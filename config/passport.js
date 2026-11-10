@@ -10,7 +10,6 @@ passport.use(
 			secretOrKey: process.env.JWT_SECRET,
 		},
 		async (payload, done) => {
-			console.log(payload);
 			const user = await prisma.user.findUnique({
 				where: { id: payload.userId },
 			});

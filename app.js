@@ -22,6 +22,13 @@ app.use('/session', sessionRouter);
 app.use('/posts', postRouter);
 app.use('/users', userRouter);
 
+app.use('/', (req, res) => {
+	if (req.user) {
+		res.json({ user: req.user });
+	} else {
+		res.json({ message: 'no user' });
+	}
+});
 app.listen(port, () => {
 	console.log(`listening on port:`, port);
 });
