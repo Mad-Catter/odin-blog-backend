@@ -1,9 +1,12 @@
 const { body, matchedData, validationResult } = require('express-validator');
 const prisma = require('../lib/prisma');
-
+// Posts should maybe include a few comments to get started
 const getMultiplePosts = async (req, res) => {
-	const start = req.params.page || 0;
+	const start = req.query.page || 0;
 	const posts = await prisma.post.findMany({
+		where: {
+			published: true,
+		},
 		skip: Number(start) * 10,
 		take: 10,
 	});
@@ -16,7 +19,7 @@ const getMultiplePosts = async (req, res) => {
 
 const getPost = async (req, res) => {
 	const post = await prisma.post.findUnique({
-		where: { id: req.params.postId },
+		where: { id: Number(req.params.postId) },
 	});
 	if (post) {
 		return res.status(200).json(post);
@@ -49,7 +52,7 @@ const createPost = [
 				title,
 				content,
 				published,
-				authorId: req.user.id,
+				authorId: Number(req.user.id),
 			},
 		});
 		res.status(200).json(post);

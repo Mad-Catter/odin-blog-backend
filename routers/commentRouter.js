@@ -1,11 +1,13 @@
 const { Router } = require('express');
-const commentRouter = Router({});
 const commentController = require('../controllers/commentController');
+const { requireUser } = require('../controllers/helpers');
 
-commentRouter.get('/', commentController.getAllComments);
+const commentRouter = Router({ mergeParams: true });
+
+commentRouter.get('/', commentController.getManyComments);
 commentRouter.get('/:commentId', commentController.getComment);
-commentRouter.post('/', commentController.createComment);
-commentRouter.patch('/:commentId', commentController.updateComment);
-commentRouter.delete('/:commentId', commentController.deleteComment);
+commentRouter.post('/', requireUser, commentController.createComment);
+commentRouter.patch('/:commentId', requireUser, commentController.updateComment);
+commentRouter.delete('/:commentId', requireUser, commentController.deleteComment);
 
 module.exports = commentRouter;

@@ -12,7 +12,8 @@ const requireUser = (req, res, next) => {
 	next();
 };
 const requireAuthor = (req, res, next) => {
-	if (!req.user.postAuthor)
+	console.log(req.user);
+	if (!req.user || !req.user.postAuthor)
 		return res.status(403).json({ message: 'You must be a verified post author for this function.' });
 	next();
 };

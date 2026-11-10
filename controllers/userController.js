@@ -3,6 +3,7 @@ const { getJWT } = require('./helpers');
 const { body, validationResult, matchedData } = require('express-validator');
 const bcrypt = require('bcryptjs');
 
+// Currently I do not know if I want users to be able to be retrieved.
 const getUser = async (req, res) => {};
 
 const newUserValidation = [

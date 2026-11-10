@@ -29,6 +29,7 @@ const login = [
 	},
 ];
 
+// I think this is unrequired and should just be handled client side?
 const logout = async (req, res) => {};
 
 module.exports = {

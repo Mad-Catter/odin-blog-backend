@@ -18,17 +18,18 @@ app.use((req, res, next) => {
 		next();
 	})(req, res, next);
 });
+// Currently you can login and create a new user while already logged in.  I think this is fine to handle client side however,
 app.use('/session', sessionRouter);
 app.use('/posts', postRouter);
 app.use('/users', userRouter);
 
-app.use('/', (req, res) => {
-	if (req.user) {
-		res.json({ user: req.user });
-	} else {
-		res.json({ message: 'no user' });
-	}
-});
+// app.use('/', (req, res) => {
+// 	if (req.user) {
+// 		res.json({ user: req.user });
+// 	} else {
+// 		res.json({ message: 'no user' });
+// 	}
+// });
 app.listen(port, () => {
 	console.log(`listening on port:`, port);
 });
