@@ -1,3 +1,5 @@
+const prisma = require('../lib/prisma');
+
 const getAllPosts = async (req, res) => {};
 
 const getPost = async (req, res) => {};

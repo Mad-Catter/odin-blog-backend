@@ -1,3 +1,5 @@
+const prisma = require('../lib/prisma');
+
 const getAllComments = async (req, res) => {};
 
 const getComment = async (req, res) => {};
